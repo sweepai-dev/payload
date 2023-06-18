@@ -29,6 +29,7 @@ import { getTranslation } from '../../../../../utilities/getTranslation';
 import { SetStepNav } from './SetStepNav';
 import { FormLoadingOverlayToggle } from '../../../elements/Loading';
 import { formatDate } from '../../../../utilities/formatDate';
+import { Preview } from './Preview';
 
 import './index.scss';
 
@@ -333,6 +334,7 @@ const DefaultEditView: React.FC<Props> = (props) => {
                 </div>
               </React.Fragment>
             )}
+            <Preview />
           </Form>
         </OperationContext.Provider>
       </div>

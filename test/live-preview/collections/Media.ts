@@ -1,5 +1,5 @@
-import { CollectionConfig } from 'payload/types';
 import path from 'path';
+import { CollectionConfig } from '../../../src/collections/config/types';
 
 export const mediaSlug = 'media';
 
@@ -17,7 +17,7 @@ const Media: CollectionConfig = {
   },
   upload: {
     adminThumbnail: 'thumbnail',
-    staticDir: path.resolve(__dirname, '../../media'),
+    staticDir: path.resolve(__dirname, '../media'),
     mimeTypes: ['image/png', 'image/jpeg'],
   },
   fields: [

@@ -34,6 +34,7 @@ const globalSchema = joi.object().keys({
       }),
     }),
     preview: joi.func(),
+    livePreviewURL: joi.string(),
   }),
   typescript: joi.object().keys({
     interface: joi.string(),

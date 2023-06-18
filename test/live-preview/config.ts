@@ -1,4 +1,4 @@
-import path = require('path');
+import path from 'path';
 import { buildConfig } from '../buildConfig';
 import { devUser } from '../credentials';
 import Media, { mediaSlug } from './collections/Media';

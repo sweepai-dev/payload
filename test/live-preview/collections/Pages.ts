@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import { CollectionConfig } from '../../../src/collections/config/types';
 
 export const pagesSlug = 'pages';
 
@@ -6,6 +6,7 @@ const Pages: CollectionConfig = {
   slug: pagesSlug,
   admin: {
     useAsTitle: 'title',
+    livePreviewURL: 'http://localhost:3001',
   },
   access: {
     read: () => true,

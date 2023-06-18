@@ -81,6 +81,7 @@ const collectionSchema = joi.object().keys({
     preview: joi.func(),
     disableDuplicate: joi.bool(),
     hideAPIURL: joi.bool(),
+    livePreviewURL: joi.string(),
   }),
   fields: joi.array(),
   indexes: joi.array().items(
