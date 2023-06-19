@@ -1,4 +1,4 @@
-import { GlobalConfig } from 'payload/types';
+import { GlobalConfig } from '../../../src/globals/config/types';
 
 const Header: GlobalConfig = {
   slug: 'header',
@@ -12,6 +12,6 @@ const Header: GlobalConfig = {
       type: 'text',
     },
   ],
-}
+};
 
 export default Header;

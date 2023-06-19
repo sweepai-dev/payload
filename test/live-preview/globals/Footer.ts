@@ -1,4 +1,4 @@
-import { GlobalConfig } from 'payload/types';
+import { GlobalConfig } from '../../../src/globals/config/types';
 
 const Footer: GlobalConfig = {
   slug: 'footer',
@@ -8,10 +8,10 @@ const Footer: GlobalConfig = {
   fields: [
     {
       name: 'content',
-      label:  'Content',
+      label: 'Content',
       type: 'text',
     },
   ],
-}
+};
 
 export default Footer;

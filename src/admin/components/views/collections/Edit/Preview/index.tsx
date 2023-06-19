@@ -5,12 +5,16 @@ import { useAllFormFields } from '../../../../forms/Form/context';
 
 const dispatchIframeMessage = async (documentInfo, fields: Fields, iframe: HTMLIFrameElement) => {
   const { global, collection } = documentInfo;
+  const postMessageKey = documentInfo?.collection?.admin?.livePreview?.postMessageKey
+    || documentInfo?.global?.admin?.livePreview?.postMessageKey
+    || 'payloadLivePreviewData';
+
   const fieldsConfig = global?.fields || collection?.fields || [];
   const doc = {}; // TODO: format doc from `fields` and `fieldsConfig`
 
   try {
     console.log('Posting live preview data'); // eslint-disable-line no-console
-    iframe.contentWindow?.postMessage({ payloadLivePreviewData: doc }, '*');
+    iframe.contentWindow?.postMessage({ [postMessageKey]: doc }, '*');
   } catch (e) {
     console.error(e);
   }
@@ -50,7 +54,7 @@ const PreviewComponent: React.FC<{
 
 export const Preview: React.FC = () => {
   const documentInfo = useDocumentInfo();
-  const livePreviewURL = documentInfo?.collection?.admin?.livePreviewURL || documentInfo?.global?.admin?.livePreviewURL;
+  const livePreviewURL = documentInfo?.collection?.admin?.livePreview?.url || documentInfo?.global?.admin?.livePreview?.url;
   if (!livePreviewURL) return null;
   return <PreviewComponent livePreviewURL={livePreviewURL} />;
 };

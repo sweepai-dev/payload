@@ -6,7 +6,9 @@ const Pages: CollectionConfig = {
   slug: pagesSlug,
   admin: {
     useAsTitle: 'title',
-    livePreviewURL: 'http://localhost:3001',
+    livePreview: {
+      url: 'http://localhost:3001',
+    },
   },
   access: {
     read: () => true,

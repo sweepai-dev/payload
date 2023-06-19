@@ -240,7 +240,10 @@ export type CollectionAdminOptions = {
    * Function to generate custom preview URL
    */
   preview?: GeneratePreviewURL
-  livePreviewURL?: string
+  livePreview?: {
+    url: string
+    postMessageKey?: string
+  }
 }
 
 /** Manage all aspects of a data collection */

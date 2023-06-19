@@ -98,7 +98,10 @@ export type GlobalAdminOptions = {
    * Function to generate custom preview URL
    */
   preview?: GeneratePreviewURL
-  livePreviewURL?: string
+  livePreview?: {
+    url: string
+    postMessageKey?: string
+  }
 }
 
 export type GlobalConfig = {
