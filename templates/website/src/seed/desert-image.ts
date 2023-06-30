@@ -1,5 +1,5 @@
-export const shirtImage = {
-  alt: 'Shirts',
+export const desertImage = {
+  alt: 'Desert',
   caption: [
     {
       children: [
@@ -9,11 +9,11 @@ export const shirtImage = {
         {
           type: 'link',
           linkType: 'custom',
-          url: 'https://unsplash.com/@henmankk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+          url: 'https://unsplash.com/@neom',
           newTab: true,
           children: [
             {
-              text: 'Keagan Henman',
+              text: 'NEOM',
             },
           ],
         },
@@ -23,7 +23,7 @@ export const shirtImage = {
         {
           type: 'link',
           linkType: 'custom',
-          url: 'https://unsplash.com/photos/Won79_9oUEk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+          url: 'https://unsplash.com/photos/bRRy9ucK1rY',
           newTab: true,
           children: [
             {

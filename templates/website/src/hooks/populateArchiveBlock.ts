@@ -11,7 +11,7 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, req: { payload 
       if (block.blockType === 'archive') {
         const archiveBlock = block as Extract<Page['layout'][0], { blockType: 'archive' }> & {
           populatedDocs: Array<{
-            relationTo: 'pages' | 'posts'
+            relationTo: 'pages' | 'posts' | 'projects'
             value: string
           }>
         }
@@ -27,15 +27,15 @@ export const populateArchiveBlock: AfterReadHook = async ({ doc, req: { payload 
               },
               ...(archiveBlock?.categories?.length > 0
                 ? {
-                  categories: {
-                    in: archiveBlock.categories
-                      .map(cat => {
-                        if (typeof cat === 'string') return cat
-                        return cat.id
-                      })
-                      .join(','),
-                  },
-                }
+                    categories: {
+                      in: archiveBlock.categories
+                        .map(cat => {
+                          if (typeof cat === 'string') return cat
+                          return cat.id
+                        })
+                        .join(','),
+                    },
+                  }
                 : {}),
             },
             sort: '-publishedDate',

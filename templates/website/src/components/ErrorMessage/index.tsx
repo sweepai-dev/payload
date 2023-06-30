@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import { CallToActionBlock } from '../../blocks/CallToAction'
+import { CallToActionBlock } from '../../app/_blocks/CallToAction'
 import { VerticalPadding } from '../VerticalPadding'
 
 export const ErrorMessage: React.FC<{ error?: string }> = ({ error }) => {

@@ -1,5 +1,5 @@
-export const courseImage = {
-  alt: 'Online Course',
+export const sandImage = {
+  alt: 'Sand',
   caption: [
     {
       children: [
@@ -9,11 +9,11 @@ export const courseImage = {
         {
           type: 'link',
           linkType: 'custom',
-          url: 'https://unsplash.com/@christinhumephoto?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+          url: 'https://unsplash.com/@rgaleriacom',
           newTab: true,
           children: [
             {
-              text: 'Christin Hume',
+              text: 'Big Dodzy',
             },
           ],
         },
@@ -23,7 +23,7 @@ export const courseImage = {
         {
           type: 'link',
           linkType: 'custom',
-          url: 'https://unsplash.com/photos/Hcfwew744z4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
+          url: 'https://unsplash.com/photos/a-person-standing-in-the-middle-of-a-desert-UvFyLu-3J-U',
           newTab: true,
           children: [
             {

@@ -73,7 +73,7 @@ export const CMSForm: React.FC<FormBlockType> = props => {
         }, 1000)
 
         try {
-          const req = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/form-submissions`, {
+          const req = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/form-submissions`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -109,7 +109,10 @@ export const CMSForm: React.FC<FormBlockType> = props => {
             const redirectUrl = new URL(url, process.env.NEXT_PUBLIC_SERVER_URL)
 
             try {
-              if (url.startsWith('/') || redirectUrl.origin === process.env.NEXT_PUBLIC_SERVER_URL) {
+              if (
+                url.startsWith('/') ||
+                redirectUrl.origin === process.env.NEXT_PUBLIC_SERVER_URL
+              ) {
                 router.push(redirectUrl.href)
               } else {
                 window.location.assign(url)

@@ -1,7 +1,8 @@
-import type { Footer, Header, Page, Post } from '../payload-types'
+import type { Footer, Header, Page, Post, Project } from '../payload-types'
 import { GLOBALS } from './globals'
 import { PAGE, PAGES } from './pages'
-import { POST, POSTS } from './posts'
+import { POST, POST_SLUGS } from './posts'
+import { PROJECT, PROJECT_SLUGS } from './projects'
 
 const next: { revalidate: false } = {
   revalidate: false,
@@ -11,7 +12,7 @@ export const fetchGlobals = async (): Promise<{
   header: Header
   footer: Footer
 }> => {
-  const { data } = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/graphql?globals`, {
+  const { data } = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?globals`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export const fetchGlobals = async (): Promise<{
 export const fetchPages = async (): Promise<
   Array<{ breadcrumbs: Page['breadcrumbs']; slug: string }>
 > => {
-  const { data, errors } = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/graphql?pages`, {
+  const { data, errors } = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?pages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -54,7 +55,7 @@ export const fetchPage = async (incomingSlugSegments?: string[]): Promise<Page |
   const slugSegments = incomingSlugSegments || ['home']
   const slug = slugSegments.at(-1)
   const { data, errors } = await fetch(
-    `${process.env.NEXT_PUBLIC_CMS_URL}/api/graphql?page=${slug}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?page=${slug}`,
     {
       method: 'POST',
       headers: {
@@ -90,27 +91,28 @@ export const fetchPage = async (incomingSlugSegments?: string[]): Promise<Page |
   return null
 }
 
-export const fetchPosts = async (): Promise<Post[]> => {
-  const currentDate = new Date()
-  const { data } = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/graphql?posts`, {
+export const fetchPosts = async (): Promise<Array<{ slug: string }>> => {
+  const { data, errors } = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?posts`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     next,
     body: JSON.stringify({
-      query: POSTS,
-      variables: {
-        publishedOn: currentDate,
-      },
+      query: POST_SLUGS,
     }),
   }).then(res => res.json())
+
+  if (errors) {
+    console.error(JSON.stringify(errors)) // eslint-disable-line no-console
+    throw new Error()
+  }
 
   return data?.Posts?.docs
 }
 
 export const fetchPost = async (slug: string): Promise<Post> => {
-  const { data } = await fetch(`${process.env.NEXT_PUBLIC_CMS_URL}/api/graphql?post=${slug}`, {
+  const { data } = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?post=${slug}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -125,4 +127,48 @@ export const fetchPost = async (slug: string): Promise<Post> => {
   }).then(res => res.json())
 
   return data?.Posts?.docs[0]
+}
+
+export const fetchProjects = async (): Promise<Array<{ slug: string }>> => {
+  const { data, errors } = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?projects`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next,
+      body: JSON.stringify({
+        query: PROJECT_SLUGS,
+      }),
+    },
+  ).then(res => res.json())
+
+  if (errors) {
+    console.error(JSON.stringify(errors)) // eslint-disable-line no-console
+    throw new Error()
+  }
+
+  return data?.Projects?.docs
+}
+
+export const fetchProject = async (slug: string): Promise<Project> => {
+  const { data } = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/api/graphql?project=${slug}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      next,
+      body: JSON.stringify({
+        query: PROJECT,
+        variables: {
+          slug,
+        },
+      }),
+    },
+  ).then(res => res.json())
+
+  return data?.Projects?.docs[0]
 }

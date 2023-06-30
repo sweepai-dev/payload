@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
     "target": "es5",
     "lib": [
       "dom",
@@ -7,22 +8,35 @@
       "esnext"
     ],
     "allowJs": true,
-    "strict": false,
-    "esModuleInterop": true,
     "skipLibCheck": true,
+    "strict": false,
     "outDir": "./dist",
     "rootDir": "./src",
-    "jsx": "react",
+    "jsx": "preserve",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true
   },
   "include": [
-    "src"
+    "src",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "build",
+    "build"
   ],
   "ts-node": {
-    "transpileOnly": true
+    "transpileOnly": true,
+    "swc": true
   }
 }

@@ -1,8 +1,8 @@
 import type { Page } from '../payload-types'
 
-export const posts: Partial<Page> = {
-  title: 'Posts',
-  slug: 'posts',
+export const projects: Partial<Page> = {
+  title: 'Projects',
+  slug: 'projects',
   _status: 'published',
   hero: {
     type: 'highImpact',
@@ -10,7 +10,7 @@ export const posts: Partial<Page> = {
       {
         children: [
           {
-            text: 'All Posts',
+            text: 'All Projects',
           },
         ],
         type: 'h1',
@@ -28,7 +28,7 @@ export const posts: Partial<Page> = {
         },
       },
     ],
-    media: '{{SAND_IMAGE}}',
+    media: '{{DESERT_IMAGE}}',
   },
   layout: [
     {
@@ -36,29 +36,29 @@ export const posts: Partial<Page> = {
         {
           children: [
             {
-              text: 'Here are your posts:',
+              text: 'Here are your projects:',
             },
           ],
           type: 'h3',
         },
       ],
       populateBy: 'collection',
-      relationTo: 'posts',
+      relationTo: 'projects',
       limit: 10,
       blockType: 'archive',
       populatedDocsTotal: 3,
       populatedDocs: [
         {
-          relationTo: 'posts',
-          value: '{{POST_ONE}}',
+          relationTo: 'projects',
+          value: '{{PROJECT_ONE}}',
         },
         {
-          relationTo: 'posts',
-          value: '{{POST_TWO}}',
+          relationTo: 'projects',
+          value: '{{PROJECT_TWO}}',
         },
         {
-          relationTo: 'posts',
-          value: '{{POST_THREE}}',
+          relationTo: 'projects',
+          value: '{{PROJECT_THREE}}',
         },
       ],
     },
@@ -93,8 +93,8 @@ export const posts: Partial<Page> = {
     },
   ],
   meta: {
-    title: 'Posts Page - Website ABC',
-    description: 'This is the posts page of the Next.js Website with Payload CMS',
-    image: '{{SAND_IMAGE}}',
+    title: 'Projects Page - Website ABC',
+    description: 'This is the projects page of the Next.js Website with Payload CMS',
+    image: '{{DESERT_IMAGE}}',
   },
 }

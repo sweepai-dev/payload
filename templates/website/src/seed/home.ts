@@ -50,7 +50,7 @@ export const home: Partial<Page> = {
         },
       },
     ],
-    media: '{{SHIRTS_IMAGE}}',
+    media: '{{SAND_IMAGE}}',
   },
   layout: [
     {
@@ -164,9 +164,39 @@ export const home: Partial<Page> = {
     {
       mediaBlockBackgroundColor: 'white',
       position: 'default',
-      media: '{{COURSE_IMAGE}}',
+      media: '{{DESERT_IMAGE}}',
       blockName: 'Media Block',
       blockType: 'mediaBlock',
+    },
+    {
+      introContent: [
+        {
+          children: [
+            {
+              text: 'Here are the other pages:',
+            },
+          ],
+        },
+      ],
+      populateBy: 'collection',
+      relationTo: 'pages',
+      limit: 10,
+      blockType: 'archive',
+      populatedDocsTotal: 3,
+      populatedDocs: [
+        {
+          relationTo: 'pages',
+          value: '{{CONTACT_PAGE}}',
+        },
+        {
+          relationTo: 'pages',
+          value: '{{POSTS_PAGE}}',
+        },
+        {
+          relationTo: 'pages',
+          value: '{{PROJECTS_PAGE}}',
+        },
+      ],
     },
     {
       ctaBackgroundColor: 'white',
@@ -195,6 +225,6 @@ export const home: Partial<Page> = {
   meta: {
     title: 'Website ABC',
     description: 'Next.js Website with Payload CMS',
-    image: '{{SHIRTS_IMAGE}}',
+    image: '{{SAND_IMAGE}}',
   },
 }

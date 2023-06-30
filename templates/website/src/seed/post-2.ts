@@ -51,7 +51,7 @@ export const post2: Partial<Post> = {
   ],
   meta: {
     title: 'Post 2',
-    description: 'Post 2',
+    description: 'Post 2 for the Next.js Website with Payload CMS',
     image: '',
   },
 }

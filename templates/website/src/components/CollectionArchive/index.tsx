@@ -5,8 +5,8 @@ import { Cell, Grid } from '@faceless-ui/css-grid'
 import { useSearchParams } from 'next/navigation'
 import qs from 'qs'
 
-import type { ArchiveBlockProps } from '../../blocks/Archive/types'
-import { Page, Post } from '../../payload-types'
+import type { ArchiveBlockProps } from '../../app/_blocks/ArchiveBlock/types'
+import { Page, Post, Project } from '../../payload-types'
 import { Card } from '../Card'
 import { Gutter } from '../Gutter'
 import { PageRange } from '../PageRange'
@@ -26,7 +26,7 @@ type Result = {
 
 export type Props = {
   className?: string
-  relationTo?: 'pages' | 'posts'
+  relationTo?: 'pages' | 'posts' | 'projects'
   populateBy?: 'collection' | 'selection'
   showPageRange?: boolean
   onResultChange?: (result: Result) => void // eslint-disable-line no-unused-vars
@@ -62,7 +62,6 @@ export const CollectionArchive: React.FC<Props> = props => {
   })
 
   const searchParams = useSearchParams()
-  const catsFromQuery = searchParams.getAll('categories')
   const page = searchParams.get('page')
 
   const [isLoading, setIsLoading] = useState(false)
@@ -95,29 +94,31 @@ export const CollectionArchive: React.FC<Props> = props => {
       }
     }, 500)
 
-    const searchParams = qs.stringify(
+    const catsFromQuery = searchParams.getAll('categories')
+
+    const searchQuery = qs.stringify(
       {
         sort,
         where: {
           ...(catsFromProps?.length > 0
             ? {
-              categories: {
-                in:
-                  typeof catsFromProps === 'string'
-                    ? [catsFromProps]
-                    : catsFromProps.map(cat => cat.id).join(','),
-              },
-            }
+                categories: {
+                  in:
+                    typeof catsFromProps === 'string'
+                      ? [catsFromProps]
+                      : catsFromProps.map(cat => cat.id).join(','),
+                },
+              }
             : {}),
           ...(catsFromQuery?.length > 0
             ? {
-              categories: {
-                in:
-                  typeof catsFromQuery === 'string'
-                    ? [catsFromQuery]
-                    : catsFromQuery.map(cat => cat).join(','),
-              },
-            }
+                categories: {
+                  in:
+                    typeof catsFromQuery === 'string'
+                      ? [catsFromQuery]
+                      : catsFromQuery.map(cat => cat).join(','),
+                },
+              }
             : {}),
         },
         limit,
@@ -130,13 +131,13 @@ export const CollectionArchive: React.FC<Props> = props => {
     const makeRequest = async () => {
       try {
         const req = await fetch(
-          `${process.env.NEXT_PUBLIC_CMS_URL}/api/${relationTo}?${searchParams}`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/api/${relationTo}?${searchQuery}`,
         )
         const json = await req.json()
         clearTimeout(timer)
         hasHydrated.current = true
 
-        const { docs } = json as { docs: Page[] | Post[] }
+        const { docs } = json as { docs: Page[] | Post[] | Project[] }
 
         if (docs && Array.isArray(docs)) {
           setResults(json)
@@ -157,7 +158,7 @@ export const CollectionArchive: React.FC<Props> = props => {
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [page, catsFromProps, catsFromQuery, relationTo, onResultChange, sort, limit])
+  }, [catsFromProps, searchParams, page, limit, onResultChange, relationTo, sort])
 
   return (
     <div className={[classes.collectionArchive, className].filter(Boolean).join(' ')}>

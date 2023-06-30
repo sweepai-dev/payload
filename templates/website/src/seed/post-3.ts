@@ -1,8 +1,8 @@
 import type { Post } from '../payload-types'
 
-export const post1: Partial<Post> = {
-  title: 'Post 1',
-  slug: 'post-1',
+export const post3: Partial<Post> = {
+  title: 'Post 3',
+  slug: 'post-3',
   _status: 'published',
   hero: {
     type: 'lowImpact',
@@ -10,7 +10,7 @@ export const post1: Partial<Post> = {
       {
         children: [
           {
-            text: 'Post 1',
+            text: 'Post 3',
           },
         ],
         type: 'h1',
@@ -31,7 +31,7 @@ export const post1: Partial<Post> = {
             {
               children: [
                 {
-                  text: 'Add more layout building blocks for Post 1 below here',
+                  text: 'Add more layout building blocks for Post 3 below here',
                 },
               ],
             },
@@ -50,8 +50,8 @@ export const post1: Partial<Post> = {
     },
   ],
   meta: {
-    title: 'Post 1',
-    description: 'Post 1 for the Next.js Website with Payload CMS',
+    title: 'Post 3',
+    description: 'Post 3 for the Next.js Website with Payload CMS',
     image: '',
   },
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { Page, Post } from '../../payload-types'
+import { Page, Post, Project } from '../../payload-types'
 import { Media } from '../Media'
 
 import classes from './index.module.scss'
@@ -11,8 +11,8 @@ export const Card: React.FC<{
   className?: string
   hideImagesOnMobile?: boolean
   title?: string
-  relationTo?: 'pages' | 'posts'
-  doc?: Page | Post
+  relationTo?: 'pages' | 'posts' | 'projects'
+  doc?: Page | Post | Project
 }> = props => {
   const {
     title: titleFromProps,
@@ -32,6 +32,8 @@ export const Card: React.FC<{
     href = `/${slug}`
   } else if (relationTo === 'posts') {
     href = `/posts/${slug}`
+  } else if (relationTo === 'projects') {
+    href = `/projects/${slug}`
   }
 
   return (

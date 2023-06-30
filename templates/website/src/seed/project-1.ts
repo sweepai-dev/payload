@@ -1,16 +1,18 @@
-import type { Post } from '../payload-types'
+import type { Project } from '../payload-types'
 
-export const post1: Partial<Post> = {
-  title: 'Post 1',
-  slug: 'post-1',
+export const project1: Partial<Project> = {
+  title: 'Project 1',
+  slug: 'project-1',
   _status: 'published',
+  publishedDate: '2023-06-30T18:24:15.312Z',
+  author: '{{USER}}',
   hero: {
     type: 'lowImpact',
     richText: [
       {
         children: [
           {
-            text: 'Post 1',
+            text: 'Project 1',
           },
         ],
         type: 'h1',
@@ -31,7 +33,7 @@ export const post1: Partial<Post> = {
             {
               children: [
                 {
-                  text: 'Add more layout building blocks for Post 1 below here',
+                  text: 'Add more layout building blocks for Project 1 below here',
                 },
               ],
             },
@@ -50,8 +52,8 @@ export const post1: Partial<Post> = {
     },
   ],
   meta: {
-    title: 'Post 1',
-    description: 'Post 1 for the Next.js Website with Payload CMS',
+    title: 'Project 1',
+    description: 'Project 1 for the Next.js Website with Payload CMS',
     image: '',
   },
 }

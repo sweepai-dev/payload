@@ -60,6 +60,15 @@ export const ARCHIVE_BLOCK = `
         title
         publishedDate
       }
+      ...on Project {
+        id
+        slug
+        title
+        author {
+          name
+        }
+        publishedDate
+      }
     }
   }
   populatedDocs {
@@ -76,6 +85,16 @@ export const ARCHIVE_BLOCK = `
         id
         slug
         title
+        publishedDate
+        ${META}
+      }
+      ...on Project {
+        id
+        slug
+        title
+        author {
+          name
+        }
         publishedDate
         ${META}
       }

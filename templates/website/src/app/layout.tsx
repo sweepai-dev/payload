@@ -1,7 +1,6 @@
 import React from 'react'
 import { Metadata } from 'next'
 
-// import { AdminBar } from '../components/AdminBar'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { fetchGlobals } from '../graphql'
@@ -18,14 +17,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        {/* <AdminBar
-              adminBarProps={{
-                collection,
-                id,
-                preview,
-                onPreviewExit,
-              }}
-            /> */}
         <Providers>
           <Header {...header} />
           <div className={classes.layout}>
