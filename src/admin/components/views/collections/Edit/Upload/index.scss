@@ -32,10 +32,10 @@
     z-index: 2;
     padding: base(2);
     display: flex;
-    align-items: center;
   }
 
   &__drop-zone {
+    align-items: center;
     border: 1px dotted var(--theme-elevation-400);
     gap: $baseline;
 
@@ -46,15 +46,41 @@
 
   &__file-selected {
     gap: $baseline;
+    flex-direction: column;
     .btn {
+      @include formInput;
+      position: relative;
       margin: 0;
+      margin-left: -1px;
+      display: flex;
+      padding: 0 base(0.5);
+      align-items: center;
+      display: flex;
+      cursor: pointer;
+      width: fit-content;
+
+      &:hover {
+        .btn__icon {
+          background: none;
+
+          .stroke {
+            stroke: currentColor;
+          }
+        }
+      }
     }
   }
 
+  &__file-upload {
+    display: flex;
+    width: 100%;
+  }
+
   &__filename {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    @include formInput;
+    padding-top: base(.25);
+    padding-bottom: base(.25);
+    flex-wrap: nowrap;
   }
 
   &--dragging {
