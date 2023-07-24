@@ -36,7 +36,7 @@ export const getProdConfig = (payloadConfig: SanitizedConfig): Configuration => 
       css: false,
     },
     plugins: [
-      ...baseConfig.plugins,
+      ...(baseConfig.plugins || []),
       // new MiniCSSExtractPlugin({
       //   filename: '[name].css',
       //   ignoreOrder: true,

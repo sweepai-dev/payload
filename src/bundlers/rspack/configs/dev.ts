@@ -27,7 +27,7 @@ export const getDevConfig = (payloadConfig: SanitizedConfig): Configuration => {
     devtool: 'inline-source-map',
     stats: 'errors-warnings',
     plugins: [
-      ...baseConfig.plugins,
+      ...(baseConfig.plugins || []),
       // new webpack.HotModuleReplacementPlugin(),
     ],
   };
