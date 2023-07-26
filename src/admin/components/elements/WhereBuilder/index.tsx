@@ -70,7 +70,17 @@ const WhereBuilder: React.FC<Props> = (props) => {
   const [reducedFields] = useState(() => reduceFields(collection.fields, i18n));
 
   useThrottledEffect(() => {
-    const currentParams = queryString.parse(history.location.search, { ignoreQueryPrefix: true, depth: 10 }) as { where: Where };
+    let currentParams;
+    try {
+      currentParams = queryString.parse(history.location.search, { ignoreQueryPrefix: true, depth: 10 }) as { where: Where };
+    } catch (error) {
+      currentParams = {};
+      const pairs = history.location.search.slice(1).split('&');
+      pairs.forEach(pair => {
+        const [key, value] = pair.split('=');
+        currentParams[key] = value;
+      });
+    }
 
     const paramsToKeep = typeof currentParams?.where === 'object' && 'or' in currentParams.where ? currentParams.where.or.reduce((keptParams, param) => {
       const newParam = { ...param };

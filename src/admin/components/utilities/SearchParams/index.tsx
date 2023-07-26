@@ -7,10 +7,20 @@ const Context = createContext({});
 export const SearchParamsProvider: React.FC<{children?: React.ReactNode}> = ({ children }) => {
   const location = useLocation();
 
-  const params = qs.parse(
-    location.search,
-    { ignoreQueryPrefix: true, depth: 10 },
-  );
+  let params;
+  try {
+    params = qs.parse(
+      location.search,
+      { ignoreQueryPrefix: true, depth: 10 },
+    );
+  } catch (error) {
+    params = {};
+    const pairs = location.search.slice(1).split('&');
+    pairs.forEach(pair => {
+      const [key, value] = pair.split('=');
+      params[key] = value;
+    });
+  }
 
   return (
     <Context.Provider value={params}>
